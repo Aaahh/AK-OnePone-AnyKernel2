@@ -1,9 +1,8 @@
 # AnyKernel 2.0 Ramdisk Mod Script 
 # osm0sis @ xda-developers
 
-## AnyKernel setup
+## Setup
 # EDIFY properties
-kernel.string=Battery Imager Replacer By Aaahh   powered by anykernel by ak@xda-developers
 do.cleanup=1
 
 # shell variables
@@ -11,8 +10,6 @@ block=/dev/block/platform/msm_sdcc.1/by-name/boot;
 initd=/system/etc/init.d;
 ## end setup
 
-
-## AnyKernel methods (DO NOT CHANGE)
 # set up extracted files and directories
 ramdisk=/tmp/anykernel/ramdisk;
 bin=/tmp/anykernel/tools;
@@ -74,96 +71,18 @@ write_boot() {
 # backup_file <file>
 backup_file() { cp $1 $1~; }
 
-# replace_string <file> <if search string> <original string> <replacement string>
-replace_string() {
-  if [ -z "$(grep "$2" $1)" ]; then
-      sed -i "s;${3};${4};" $1;
-  fi;
-}
-
-# insert_line <file> <if search string> <before/after> <line match string> <inserted line>
-insert_line() {
-  if [ -z "$(grep "$2" $1)" ]; then
-    case $3 in
-      before) offset=0;;
-      after) offset=1;;
-    esac;
-    line=$((`grep -n "$4" $1 | cut -d: -f1` + offset));
-    sed -i "${line}s;^;${5};" $1;
-  fi;
-}
-
-# replace_line <file> <line replace string> <replacement line>
-replace_line() {
-  if [ ! -z "$(grep "$2" $1)" ]; then
-    line=`grep -n "$2" $1 | cut -d: -f1`;
-    sed -i "${line}s;.*;${3};" $1;
-  fi;
-}
-
-# remove_line <file> <line match string>
-remove_line() {
-  if [ ! -z "$(grep "$2" $1)" ]; then
-    line=`grep -n "$2" $1 | cut -d: -f1`;
-    sed -i "${line}d" $1;
-  fi;
-}
-
-# prepend_file <file> <if search string> <patch file>
-prepend_file() {
-  if [ -z "$(grep "$2" $1)" ]; then
-    echo "$(cat $patch/$3 $1)" > $1;
-  fi;
-}
-
-# append_file <file> <if search string> <patch file>
-append_file() {
-  if [ -z "$(grep "$2" $1)" ]; then
-    echo -ne "\n" >> $1;
-    cat $patch/$3 >> $1;
-    echo -ne "\n" >> $1;
-  fi;
-}
-
-# replace_file <file> <permissions> <patch file>
-replace_file() {
-  cp -fp $patch/$3 $1;
-  chmod $2 $1;
-}
-
 ## end methods
 
-
-## AnyKernel permissions
+## Permissions
 # set permissions for included files
 chmod -R 755 $ramdisk
 chmod 644 $ramdisk/sbin/media_profiles.xml
 
 
-## AnyKernel install
+## Install
 dump_boot;
 
 # begin ramdisk changes
-
-# insert initd scripts
-#cp -fp $patch/init.d/* $initd
-#chmod -R 766 $initd
-
-# adb secure
-#backup_file default.prop;
-#replace_string default.prop "ro.adb.secure=0" "ro.adb.secure=1" "ro.adb.secure=0";
-#replace_string default.prop "ro.secure=0" "ro.secure=1" "ro.secure=0";
-
-# kernel tunables
-#backup_file init.qcom-common.rc
-#replace_line init.qcom-common.rc "write /sys/block/mmcblk0/queue/scheduler row" "    write /sys/block/mmcblk0/queue/scheduler deadline";
-#replace_line init.qcom-common.rc "write /sys/block/mmcblk0/bdi/read_ahead_kb 512" "    write /sys/block/mmcblk0/bdi/read_ahead_kb 1024";
-
-# interactive tunables
-#replace_line init.qcom-common.rc "write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1190400" "    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1497600";
-
-# panel and gamma
-#replace_line init.qcom-common.rc "chown system graphics /sys/devices/virtual/graphics/fb0/panel_calibration" "    chown system system /sys/devices/virtual/graphics/fb0/panel_calibration";
 
 cp -fpr $patch/* $ramdisk/res/images/charger/
 
@@ -172,4 +91,3 @@ cp -fpr $patch/* $ramdisk/res/images/charger/
 write_boot;
 
 ## end install
-
