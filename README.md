@@ -9,4 +9,3 @@ by osm0sis @ xda-developers
 * Flash
 
 Have fun!
-
