@@ -1,11 +1,12 @@
-AnyKernel 2.0 - Flashable Zip Template for Kernel Releases with Ramdisk Modifications
+##Battery Images Replacer
+Using AnyKernel 2.0 - Flashable Zip Template for Kernel Releases with Ramdisk Modifications
 by osm0sis @ xda-developers
 
-// Instructions
+* Instructions
 
-1- Place your images in the folder "charger" (Make sure it's the right format)
-2- ReZip/Update and copy the zip to your SD
-3- Flash
+* Place your images in the folder "charger" (Make sure it's the right format)
+* ReZip/Update and copy the zip to your SD
+* Flash
 
 Have fun!
 
