@@ -4,15 +4,10 @@
 ## AnyKernel setup
 # EDIFY properties
 kernel.string=Battery Imager Replacer By Aaahh   powered by anykernel by ak@xda-developers
-do.devicecheck=1
+do.devicecheck=0
 do.initd=0
 do.modules=0
-do.cleanup=0
-device.name1=A0001
-device.name2=bacon
-device.name3=One A0001
-device.name4=One
-device.name5=OnePlus
+do.cleanup=1
 
 # shell variables
 block=/dev/block/platform/msm_sdcc.1/by-name/boot;
