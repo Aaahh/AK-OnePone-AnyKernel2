@@ -3,7 +3,7 @@
 
 ## AnyKernel setup
 # EDIFY properties
-kernel.string=Boot Imager Replacer By Aaahh and anykernel by ak@xda-developers
+kernel.string=Battery Imager Replacer By Aaahh and anykernel by ak@xda-developers
 do.devicecheck=1
 do.initd=0
 do.modules=0
