@@ -4,9 +4,6 @@
 ## AnyKernel setup
 # EDIFY properties
 kernel.string=Battery Imager Replacer By Aaahh   powered by anykernel by ak@xda-developers
-do.devicecheck=0
-do.initd=0
-do.modules=0
 do.cleanup=1
 
 # shell variables
