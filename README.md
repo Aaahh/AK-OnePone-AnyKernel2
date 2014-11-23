@@ -5,7 +5,7 @@ by osm0sis @ xda-developers
 Instructions:
 
 1. Place your images in the folder 'charger' (Make sure it's the right format)
-2. Re-zip/Update and copy the zip to your SD
+2. Re-zip/Zip all folders and files in the git and copy the zip to your SD
 3. Flash
 
 Have fun!
