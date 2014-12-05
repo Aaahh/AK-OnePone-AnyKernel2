@@ -84,7 +84,7 @@ dump_boot;
 
 # begin ramdisk changes
 
-cp -fpr $patch/* $ramdisk/res/images/charger/
+#cp -fpr $patch/* $ramdisk/res/images/charger/
 
 # end ramdisk changes
 
