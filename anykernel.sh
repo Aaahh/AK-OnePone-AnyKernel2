@@ -71,6 +71,11 @@ write_boot() {
 # backup_file <file>
 backup_file() { cp $1 $1~; }
 
+replace_string() {
+if [ -z "$(grep "$2" $1)" ]; then
+sed -i "s;${3};${4};" $1;
+fi;
+}
 ## end methods
 
 ## Permissions
@@ -84,8 +89,7 @@ dump_boot;
 
 # begin ramdisk changes
 
-cp -fpr $patch/* $ramdisk/res/images/charger/
-
+replace_string "loglevel 3" "loglevel 8" "loglevel 3";
 # end ramdisk changes
 
 write_boot;
